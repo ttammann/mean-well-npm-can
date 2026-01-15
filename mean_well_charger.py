@@ -108,8 +108,8 @@ class MeanWellCharger:
     def set_taper_current(self, in_value):
         """Set taper current"""
         if in_value > 7.5 and in_value < 0.5:
-            print("Won't set taper voltage to higher than 7.5A or lower than 0.5A. Setting it to 5A")
-            value = 500
+            print("Won't set taper voltage to higher than 7.5A or lower than 0.5A. No change!")
+            return
         else:
             value = int(in_value * 100)
 
