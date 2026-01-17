@@ -98,12 +98,12 @@ class MeanWellCharger:
         else:
             value = int(in_value * 100)
 
-        self.off()
+        self.set_off()
 
         self._set_two_bytes(0xB2, value)
 
         time.sleep(0.05)
-        self.on()
+        self.set_on()
         
     def set_taper_current(self, in_value):
         """Set taper current"""
@@ -113,12 +113,12 @@ class MeanWellCharger:
         else:
             value = int(in_value * 100)
 
-        self.off()
+        self.set_off()
 
         self._set_two_bytes(0xB3, value)
 
         time.sleep(0.05)
-        self.on()    
+        self.set_on()    
 
     def set_restart_voltage(self, in_value):
         """Set and enable charger restart voltage"""
@@ -133,12 +133,12 @@ class MeanWellCharger:
 
         time.sleep(0.05)
 
-        self.off()
+        self.set_off()
 
         self._set_two_bytes(0xB9, value)
 
         time.sleep(0.05)
-        self.on()
+        self.set_on()
 
     def shutdown(self):
         """Release CAN bus after usage"""
