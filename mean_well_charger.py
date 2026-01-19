@@ -76,7 +76,7 @@ class MeanWellCharger:
             print(f"  Wakeup finished: {low & 0x04 > 0}")
 
     def set_voltage(self, in_value):
-        """Set charger absorbtion voltage"""
+        """Set charger absorption voltage"""
         if in_value > 56:
             print("Won't set charging voltage to higher than 56 V")
             value = 5600
@@ -108,7 +108,7 @@ class MeanWellCharger:
     def set_taper_current(self, in_value):
         """Set taper current"""
         if in_value > 7.5 and in_value < 0.5:
-            print("Won't set taper voltage to higher than 7.5A or lower than 0.5A. No change!")
+            print("Won't set taper current to higher than 7.5A or lower than 0.5A. No change!")
             return
         else:
             value = int(in_value * 100)
@@ -119,6 +119,22 @@ class MeanWellCharger:
 
         time.sleep(0.05)
         self.set_on()    
+        
+        
+    def set_charge_current(self, in_value):
+        """Set charge current"""
+        if in_value > 25 and in_value < 5:
+            print("Won't set charge current to higher than 25A or lower than 5A. No change!")
+            return
+        else:
+            value = int(in_value * 100)
+
+        self.set_off()
+
+        self._set_two_bytes(0xB0, value)
+
+        time.sleep(0.05)
+        self.set_on()        
 
     def set_restart_voltage(self, in_value):
         """Set and enable charger restart voltage"""
